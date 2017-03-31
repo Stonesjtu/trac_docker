@@ -1,30 +1,20 @@
-FROM ubuntu:quantal
+FROM ubuntu:16.04
 MAINTAINER = Jason M. Mills <jmmills@cpan.org>
 ENV DEBIAN_FRONTEND noninteractive
-RUN apt-get update
-RUN apt-get install -y pwgen
-RUN apt-get install -y git-core
-RUN apt-get install -y trac
-RUN apt-get install -y trac-git
-RUN apt-get install -y trac-accountmanager
-RUN apt-get install -y trac-customfieldadmin
-RUN apt-get install -y trac-xmlrpc
-RUN apt-get install -y trac-wikiprint
-RUN apt-get install -y trac-wysiwyg
-RUN apt-get install -y trac-mastertickets
-RUN apt-get install -y trac-tags
-RUN apt-get install -y trac-diavisview
-RUN apt-get install -y trac-announcer
-RUN apt-get install -y trac-batchmodify
-RUN apt-get install -y trac-graphviz
-RUN apt-get install -y python-flup
+RUN apt-get update && apt-get install -y pwgen \
+    git-core \
+    trac \
+    trac-* \
+    python-flup && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
-ADD setup_trac_config.sh /.setup_trac_config.sh
-ADD setup_trac.sh /.setup_trac.sh
-ADD run.sh /run.sh
-ADD trac_logo.png /var/www/trac_logo.png
+COPY setup_trac_config.sh /.setup_trac_config.sh
+COPY setup_trac.sh /.setup_trac.sh
+COPY run.sh /run.sh
+COPY trac_logo.png /var/www/trac_logo.png
 
-ADD set_trac_user_password.py /usr/local/bin/
+COPY set_trac_user_password.py /usr/local/bin/
 RUN chmod 755 /usr/local/bin/set_trac_user_password.py
 
 
