@@ -1,16 +1,11 @@
-FROM ubuntu:16.04
+FROM ruimashita/pip
 
 LABEL maintainer "skyisno.1@gmail.com"
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt-get update && apt-get install -y pwgen \
-    git-core \
-    trac \
-    trac-* \
-    python-flup && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+RUN pip install --no-cache-dir trac \
+    psycopg2
 
 COPY setup_trac_config.sh /.setup_trac_config.sh
 COPY setup_trac.sh /.setup_trac.sh
