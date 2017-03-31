@@ -5,7 +5,7 @@ LABEL maintainer "skyisno.1@gmail.com"
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN pip install --no-cache-dir trac \
-    psycopg2 \
+    psycopg2
 
 COPY setup_trac_config.sh /.setup_trac_config.sh
 COPY setup_trac.sh /.setup_trac.sh
