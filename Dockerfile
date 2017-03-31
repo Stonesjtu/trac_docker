@@ -1,6 +1,6 @@
 FROM ubuntu:16.04
 
-MAINTAINER = Jason M. Mills <jmmills@cpan.org>
+LABEL maintainer "skyisno.1@gmail.com"
 
 ENV DEBIAN_FRONTEND noninteractive
 
