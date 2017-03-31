@@ -1,6 +1,9 @@
 FROM ubuntu:16.04
+
 MAINTAINER = Jason M. Mills <jmmills@cpan.org>
+
 ENV DEBIAN_FRONTEND noninteractive
+
 RUN apt-get update && apt-get install -y pwgen \
     git-core \
     trac \
